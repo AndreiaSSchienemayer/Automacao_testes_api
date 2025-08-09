@@ -1,4 +1,5 @@
-const { users, transfers } = require('../model/database');
+const { users } = require('../model/database');
+const transferModel = require('../model/transferModel');
 
 function transferValue({ from, to, amount }) {
   const sender = users.find(u => u.username === from);
@@ -11,7 +12,7 @@ function transferValue({ from, to, amount }) {
   sender.balance -= amount;
   recipient.balance += amount;
   const transfer = { from, to, amount, date: new Date() };
-  transfers.push(transfer);
+  transferModel.addTransfer(transfer);
   return { success: true, transfer };
 }
 

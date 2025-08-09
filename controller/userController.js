@@ -25,6 +25,7 @@ exports.login = (req, res) => {
 };
 
 exports.list = (req, res) => {
-  const users = require('../model/database').users.map(u => ({ username: u.username, favored: u.favored, balance: u.balance }));
+  const userModel = require('../model/userModel');
+  const users = userModel.getAllUsers().map(u => ({ username: u.username, favored: u.favored, balance: u.balance }));
   res.json(users);
 };

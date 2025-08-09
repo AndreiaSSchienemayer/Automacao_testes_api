@@ -1,11 +1,11 @@
-const { users } = require('../model/database');
+const userModel = require('../model/userModel');
 
 function findUserByUsername(username) {
-  return users.find(u => u.username === username);
+  return userModel.findUserByUsername(username);
 }
 
 function addUser(user) {
-  users.push(user);
+  userModel.addUser(user);
 }
 
 module.exports = {
