@@ -10,7 +10,7 @@ exports.transfer = (req, res) => {
     if (result.error) {
       return res.status(400).json({ error: result.error });
     }
-    res.json({ message: 'Transferência realizada com sucesso.', transfer: result.transfer });
+    res.status(201).json(result.transfer);
   } catch (err) {
     res.status(500).json({ error: 'Erro interno ao processar transferência.' });
   }
