@@ -12,6 +12,9 @@ exports.register = (req, res) => {
   res.status(201).json({ message: 'Usuário registrado com sucesso.' });
 };
 
+const jwt = require('jsonwebtoken');
+const SECRET = process.env.JWT_SECRET || 'segredo_super_secreto';
+
 exports.login = (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -21,7 +24,9 @@ exports.login = (req, res) => {
   if (!user || user.password !== password) {
     return res.status(401).json({ error: 'Usuário ou senha inválidos.' });
   }
-  res.json({ message: 'Login realizado com sucesso.' });
+  // Gera o token JWT
+  const token = jwt.sign({ username: user.username }, SECRET, { expiresIn: '1h' });
+  res.json({ message: 'Login realizado com sucesso.', token });
 };
 
 exports.list = (req, res) => {
