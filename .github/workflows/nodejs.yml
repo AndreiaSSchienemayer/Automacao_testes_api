@@ -23,10 +23,10 @@ jobs:
       run: npm install
 
     - name: Executar testes Controller
-      run: npm run test test-controller
+      run: npm run test-controller
 
     - name: Subir a API
-      run: npm star & 
+      run: npm start & 
 
     - name: Esperar a API estar funcionando
       run: sleep 5
